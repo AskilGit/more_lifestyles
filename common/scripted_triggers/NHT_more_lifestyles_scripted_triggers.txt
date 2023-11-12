@@ -1,0 +1,156 @@
+﻿more_lifestyles_is_loaded = { always = yes }
+
+nht_fortified_barony_is_valid_trigger = {
+	title_province = {
+		NOT = { has_province_modifier = nht_reinforced_barony_modifier }
+	}
+	trigger_if = {
+		limit = {
+			holder = $CHARACTER$
+		}
+	}
+	trigger_else = {
+		holder.primary_title.tier = tier_barony
+	}
+}
+
+
+has_focus_prowess = {
+	OR = {
+		has_focus = nht_prowess_commanding_focus
+		has_focus = nht_prowess_offense_focus
+		has_focus = nht_prowess_defense_focus
+	}
+}
+
+has_nht_prowess_lifestyle_trait_trigger = {
+	OR = {
+		has_trait = nht_commander
+		has_trait = nht_vanguard
+		has_trait = nht_sentinel
+	}
+}
+
+#Education triggers
+has_education_nht_prowess_trigger = {
+	OR = {
+		has_trait = education_martial_prowess_1
+		has_trait = education_martial_prowess_2
+		has_trait = education_martial_prowess_3
+		has_trait = education_martial_prowess_4
+	}
+}
+
+has_focus_leadership = {
+	OR = {
+		has_focus = nht_sovereign_focus
+		has_focus = nht_traditions_focus
+		has_focus = nht_dynasty_focus
+	}
+}
+
+is_in_ta_for_with_other_character_trigger = {
+	OR = {
+		has_variable = nht_is_trade_recipient
+		has_variable = nht_is_trade_actor
+	}
+	is_adult = yes
+	OR = {
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_1
+			target = root
+		}	
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_2
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_3
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_4
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_5
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_6
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_7
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_8
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_9
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_10
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_11
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_12
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_13
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_14
+			target = root
+		}
+		has_opinion_modifier = {
+			modifier = nht_has_trade_agreement_opinion_15
+			target = root
+		}
+	}	
+}
+
+nht_can_start_new_lifestyle_tree_prowess_trigger = {
+	OR = {
+		NOR = {
+			has_perk = nht_orderly_maneuvers_perk		
+			has_perk = nht_ruthless_assault_perk
+		}
+		has_perk = nht_vanguard_perk
+	}
+	OR = {
+		NOT = { has_perk = nht_perpetual_mastery_perk }
+		has_perk = nht_commander_perk
+	}	
+	OR = {
+		NOT = { has_perk = nht_shieldbearer_perk }
+		has_perk = nht_sentinel_perk
+	}
+}
+
+nht_can_start_new_lifestyle_tree_leadership_trigger = {
+	OR = {
+		NOR = {
+			has_perk = nht_pluralistic_unity_perk
+			has_perk = nht_covenant_of_faith_perk
+		}
+		has_perk = nht_charismatic_perk
+	}	
+	OR = {
+		NOT = { has_perk = nht_leading_by_example_perk }
+		has_perk = nht_visionary_perk
+	}
+	OR = {
+		NOT = { has_perk = nht_eloquent_authority_perk }
+		has_perk = nht_founder_perk	
+	}
+}

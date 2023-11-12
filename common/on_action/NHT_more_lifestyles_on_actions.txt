@@ -1,0 +1,160 @@
+﻿on_death = {
+	on_actions = { on_nht_death_trade_agreement }
+}
+
+on_nht_death_trade_agreement = {
+	trigger = {
+		root = {
+			OR = {
+				has_variable = nht_is_trade_recipient
+				has_variable = nht_is_trade_actor
+			}
+			is_adult = yes
+		}
+	}
+	effect = {
+		root = {
+			save_scope_as = nht_trade_actor		
+		}
+		every_ruler = {
+			limit = {
+				OR = {
+					has_variable = nht_is_trade_recipient
+					has_variable = nht_is_trade_actor			
+				}
+				is_in_ta_for_with_other_character_trigger = yes
+			}
+			add_to_list = nht_rulers_have_ta_with_dead_char
+			save_scope_as = nht_trade_recipient			
+		}
+		if = {
+			limit = { 
+				AND = { 
+					exists = scope:nht_trade_recipient
+					exists = scope:nht_trade_actor
+				}	
+			}
+			every_in_list = { 
+				list = nht_rulers_have_ta_with_dead_char
+				if = {
+					limit = {
+						exists = var:nht_number_of_trade
+					}
+					change_variable = { name = nht_number_of_trade add = -1 }
+				}
+				send_interface_message = {
+					type = nht_canceled_trade_agreement_on_death
+					title = msg_nht_canceled_trade_agreement_on_death
+					desc = msg_nht_canceled_trade_agreement_on_death_desc
+					left_icon = scope:nht_trade_actor
+				}
+			}			
+			nht_cancel_trade_agreement_death_effect = yes		
+		}		
+	}	
+}
+
+on_war_started = {
+	on_actions = { on_nht_war_started_trade_agreement }
+}
+
+on_nht_war_started_trade_agreement = {
+	trigger = {
+		OR = {
+			AND = {
+				scope:attacker = {
+					has_variable = nht_is_trade_actor
+					is_adult = yes
+				}
+				scope:defender = {
+					has_variable = nht_is_trade_recipient
+					is_adult = yes
+				}
+			}
+			AND = {
+				scope:attacker = {
+					has_variable = nht_is_trade_recipient
+					is_adult = yes
+				}
+				scope:defender = {
+					has_variable = nht_is_trade_actor
+					is_adult = yes
+				}
+			}
+		}
+	}
+	effect = {
+		scope:attacker = {
+			save_scope_as = nht_trade_attacker
+			send_interface_message = {
+				type = nht_canceled_trade_agreement_war_attacker
+				title = msg_nht_canceled_trade_agreement_war
+				desc = msg_nht_canceled_trade_agreement_war_desc
+				right_icon = scope:defender
+			}
+		}
+		scope:defender = {
+			save_scope_as = nht_trade_defender
+			send_interface_message = {
+				type = nht_canceled_trade_agreement_war_defender
+				title = msg_nht_canceled_trade_agreement_war_defender
+				desc = msg_nht_canceled_trade_agreement_war_defender_desc
+				right_icon = scope:attacker
+			}
+		}
+		if = {
+			limit = { 
+				AND = { 
+					exists = scope:nht_trade_attacker
+					exists = scope:nht_trade_defender
+				}	
+			}
+			scope:defender = {
+				if = {
+					limit = {
+						exists = var:nht_number_of_trade
+					}
+					change_variable = { name = nht_number_of_trade add = -1 }
+				}
+			}
+			scope:attacker = {
+				if = {
+					limit = {
+						exists = var:nht_number_of_trade
+					}
+					change_variable = { name = nht_number_of_trade add = -1 }
+				}
+			}			
+			nht_cancel_trade_agreement_war_effect = yes			
+		}	
+	}	
+}
+
+on_siege_completion = {
+	on_actions = { on_siege_sacking_holding_event }
+}
+
+on_siege_sacking_holding_event = {
+	trigger = {
+		NOT = { has_character_flag = nht_choose_no_sacking }
+		scope:county = {	
+			NOT = { has_county_modifier = nht_recently_sacked_modifier }
+		}		
+		OR = {
+			has_perk = nht_spoils_of_war_perk
+			has_game_rule = nht_sack_holding_event_no_requi
+			has_game_rule = nht_sack_holding_event_no_requi_no_level
+		}
+		OR = {
+			scope:county = {
+				holder.top_liege.capital_county = this
+			}
+			scope:county = {
+				development_level >= sacking_holding_developement_level_value
+			}
+		}
+	}
+	events = {
+		nht_ml_sack_holding_event.0001
+	}
+}

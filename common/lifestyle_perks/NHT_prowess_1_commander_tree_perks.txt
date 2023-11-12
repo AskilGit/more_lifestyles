@@ -1,0 +1,185 @@
+﻿nht_perpetual_mastery_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 2 0 }
+	icon = node_nht_prowess
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_2
+	}	
+	
+	auto_selection_weight = {
+		value = 11
+		if = {
+			limit = {
+				prowess >= 11
+			}
+			add = 1988
+		}
+		if = {
+			limit = {
+				has_focus = nht_prowess_commanding_focus
+			}
+			multiply = 7
+		}
+		if = {
+			limit = {
+				NOT = { has_game_rule = nht_secondary_lifestyle }
+				nht_can_start_new_lifestyle_tree_prowess_trigger = no
+			}
+			multiply = 0
+		}
+	}
+	character_modifier = {
+		prowess_per_prestige_level = 1
+		knight_effectiveness_mult = 0.15
+	}
+}
+
+nht_controlled_supplies_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 0 1.25 }
+	icon = node_nht_prowess
+	parent = nht_perpetual_mastery_perk
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_2
+	}	
+	
+	character_modifier = {
+		supply_duration = 0.15
+	}
+}
+
+
+nht_master_of_logistics_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 0 2.5 }
+	icon = node_nht_prowess
+	
+	parent = nht_controlled_supplies_perk
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_3
+	}
+	
+	character_modifier = {
+		supply_capacity_add = 100
+	}
+}
+
+
+nht_vanguard_inspiration_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 2 1.25 }
+	icon = node_nht_prowess
+	
+	parent = nht_perpetual_mastery_perk
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_2
+	}
+	
+	character_modifier = {
+		same_culture_mercenary_hire_cost_mult = -0.25
+		same_culture_holy_order_hire_cost_mult = -0.25
+	}
+}
+
+
+nht_thrifty_operations_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 2 2.5 }
+	icon = node_nht_prowess
+	
+	parent = nht_vanguard_inspiration_perk
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_3
+	}
+	
+	character_modifier = {
+		army_maintenance_mult = -0.10
+	}
+}
+
+
+nht_border_buards_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 4 1.25 }
+	icon = node_nht_prowess
+	
+	parent = nht_perpetual_mastery_perk
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_2
+	}
+	
+	character_modifier = {
+		garrison_size = 0.2
+		monthly_county_control_change_add = 0.1
+	}
+}
+
+
+nht_resolute_vassals_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 4 2.5 }
+	icon = node_nht_prowess
+	
+	parent = nht_border_buards_perk
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_3
+	}
+	
+	character_modifier = {
+		vassal_levy_contribution_mult = 0.15
+		levy_reinforcement_rate = 0.2
+	}
+}
+
+
+nht_noble_allegiance_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 2 3.75 }
+	icon = node_nht_prowess
+	
+	parent = nht_master_of_logistics_perk
+	parent = nht_thrifty_operations_perk
+	parent = nht_resolute_vassals_perk
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_4
+	}
+	
+	character_modifier = {
+		knight_limit = 3
+		accolade_glory_gain_mult = 0.1
+	}
+}
+
+
+nht_commander_perk = {
+	lifestyle = nht_prowess_lifestyle
+	tree = nht_commander
+	position = { 2 5 }
+	icon = nht_commander_perk
+	
+	parent = nht_noble_allegiance_perk
+
+	can_be_auto_selected = { 
+		has_trait = education_martial_4
+	}	
+	
+	effect = {
+		add_trait_force_tooltip = nht_commander
+	}
+}
