@@ -1,0 +1,17 @@
+﻿l_english:
+  
+ ########################
+ ####### Decisions ######
+ ########################    
+ 
+ nht_reinforce_barony_perk_decision:1 "Fortify Holding"
+ nht_reinforce_barony_perk_decision_tooltip:1 "Build fortification in one of your [barony|E]."
+ nht_reinforce_barony_perk_decision_desc:1 "In these troubled times, many would love to see my dynasty fall. It would be wise to fortify one’s position against potential enemies before they come."
+ nht_reinforce_barony_perk_decision_confirm:1 "Fortify Holding"
+ 
+ 
+ ## Has been left out of the previous update
+ nht_capital_wall_perk_decision:1 "Construct Capital Wall"
+ nht_capital_wall_perk_decision_tooltip:1 "Build a [special_building|E] in your [capital|E]."
+ nht_capital_wall_perk_decision_desc:1 "In these troubled times, many would love to see my dynasty fall. It would be wise to fortify one’s position against potential enemies before they come. By building a wall around my capital, both a symbol of my  strength and ensure the prosperity of my realm."
+ nht_capital_wall_perk_decision_confirm:1 "Prepare Construction"

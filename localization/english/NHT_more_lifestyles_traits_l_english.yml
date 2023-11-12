@@ -1,0 +1,32 @@
+﻿l_english:
+
+ ##################
+ ##### Traits #####
+ ##################
+
+ ###Prowess Lifestyle Traits 
+ #Vanguard
+ trait_nht_vanguard:0 "Vanguard"
+ nht_vanguard_desc:0 "A relentless force of aggression, cutting through the enemy lines like a tempest of destruction, leading men in the chaos of battle."
+
+ #Commander
+ trait_nht_commander:0 "Commander"
+ nht_commander_desc:0 "Only in the midst of battle can one truly understand how to lead."
+
+ #Sentinel
+ trait_nht_sentinel:0 "Sentinel"
+ nht_sentinel_desc:0 "A vigilant guardian, skilled in the art of defense, who stands firm against any threat, prepared for what danger may appear."
+ 
+ 
+ ###Leadership Lifestyle Traits 
+ #Visionary
+ trait_nht_visionary:0 "Visionary"
+ trait_nht_visionary_desc:0 "Both paths to greatness and obscurity lie within the veil of infinite possibilities; only the farseeing know which one to take." 
+ 
+ #Cosmopolitan
+ trait_nht_cosmopolitan:0 "Cosmopolitan"
+ trait_nht_cosmopolitan_desc:0 "One can understand the world only though its many perspectives and experiences."
+ 
+ #Founder
+ trait_nht_founder:0 "Founder"
+ trait_nht_founder_desc:0 "A man can found immortality in the legacy of his own dynasty."
